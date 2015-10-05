@@ -10,15 +10,29 @@
 % Within each student's folder, there should be some .stl files. 
 % Find these .stl files, and put into a list. 
 
+clear
+close all
+clc
+
+% ---------------------
+% Settings
+% --------------------
 
 
 % Get a list of all files and folders in this folder.
 targetDir = 'E:\Fall2015\P1\Unzipped';
 numberOfFilesPerGroup = 10;
-
+foldercount =1; % folder numbering starts at this value. (should be 1 for most applications)
+makeImages = 0; % Set to 1 to make the 4 vies of each .stl file. 
 doRenameFiles = 0; % Set to 1 for normal use, set to 0 while developing code
+doCopyFilesToNewLocation = 0; % Set to 1 for normal use. 0 while developing. 
+makeNewdirectories = 0; % set to 1 for normal use, 0 while developing. 
 
 
+% ---------------------
+% Main code. 
+% Find all the student folders
+% --------------------
 
 files = dir(targetDir);
 % Get a logical vector that tells which is a directory.
@@ -86,14 +100,17 @@ end
 
 
 count2 = 1;
-foldercount =1;
-
 % make a new folder
 folder = sprintf('Group%i',foldercount);
 foldercount = foldercount+1;
 
 newFolderName = fullfile(targetDir,folder);
-mkdir(newFolderName);
+if(makeNewdirectories ==1)
+    mkdir(newFolderName);
+end
+
+csvFileName = fullfile(targetDir, '3dprint.csv');
+fileID = fopen(csvFileName,'w');
 
 for i = 1:length(listOfSTLFiles)
   
@@ -105,7 +122,12 @@ for i = 1:length(listOfSTLFiles)
         folder = sprintf('Group%i',foldercount);
         foldercount = foldercount+1;
         newFolderName = fullfile(targetDir,folder);
-        mkdir(newFolderName);
+        
+         fprintf(fileID,'\n'); 
+        
+        if(makeNewdirectories ==1)            
+            mkdir(newFolderName);
+        end
         
     end
     
@@ -114,22 +136,33 @@ for i = 1:length(listOfSTLFiles)
     % -------------------------
     stl  = listOfSTLFiles(i);    
     newFilePath = fullfile(newFolderName,stl.renamedFileName);
-    copyfile(stl.renamedPath,newFilePath);
+    if(doCopyFilesToNewLocation==1)
+        copyfile(stl.renamedPath,newFilePath);
+    end
+    % temp = [cellstr(num2str(foldercount)),   cellstr(num2str(i)),cellstr(newFolderName),cellstr( stl.renamedPath)]
+    %temp = temp
+    % csvFileArray(i,:) =  temp;
+    fprintf(fileID,'%i, %i, %s, %s ,%s\n',foldercount-1,i,newFolderName,stl.renamedPath, stl.username );
+    
+    
    
    fprintf('%i   %s cpy to %s\n',i, stl.renamedPath,newFilePath);
    
-   FourViews(newFilePath)
-   close all; % reset the figure
-    
-    % copy numberOfStlfilesPerGroup here
-  
-    % run the script to make the 4 views of the .stl file. 
-    
-    
-    
-    
+   if(makeImages ==1)
+       try
+         FourViews(newFilePath)
+       catch
+            warning('Some problem creating the 4 views for the current model');
+       end
+       close all; % reset the figure
+   end
 end
 
 
+% csvwrite(csvFileName,csvFileArray);
 
 
+% fprintf(fileID,'%6s %12s\n','x','exp(x)');
+% fprintf(fileID,'%6.2f %12.8f\n',A);
+fclose(fileID);
+csvFileName

@@ -4,5 +4,9 @@ classdef stlFile
         originalPath
         renamedPath
         renamedFileName
+        
+        sectionNumber
+        FirstName % of student
+        LastName % of student
     end
 end

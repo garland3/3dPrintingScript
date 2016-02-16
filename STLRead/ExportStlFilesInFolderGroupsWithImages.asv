@@ -43,8 +43,8 @@ for i = 1:length(listOfSTLFiles)
     %temp = temp
     % csvFileArray(i,:) =  temp;
     %     fprintf(fileID,'%i, %i, %s, %s ,%s , %s, %s\n',foldercount-1,i,newFolderName,stl.renamedPath, stl.username, stl.sectionNumber, );
-    temp1 = {int2str(localFolderCounter-1), int2str(i), newFolderName, stl.renamedPath , stl.username , stl.sectionNumber, stl.FirstName,  stl.LastName};
-    fileInfo(i,:) = temp1;
+    temp1 = [localFolderCounter-1,i,newFolderName,stl.renamedPath, stl.username, stl.sectionNumber,stl.FirstName, stl.LastName];
+    fileInfo() fileInfo;temp1];
     
     fprintf('%i   %s cpy to %s\n',i, stl.renamedPath,newFilePath);
     
@@ -59,6 +59,5 @@ for i = 1:length(listOfSTLFiles)
 end
 
 % fclose(fileID);
-% csvwrite(csvFileName, fileInfo)
-cell2csv(csvFileName,fileInfo,',')
+csvwrite(csvFileName, fileInfo)
 csvFileName

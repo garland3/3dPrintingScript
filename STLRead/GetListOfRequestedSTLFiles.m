@@ -16,7 +16,7 @@ unfoundIndex =1;
 
 for i = 1:length(raw)
      row = raw(i,:); % get the row based off the index.
-     username = char(row(3));
+     username = lower(char(row(3)));
      found = 0;    
      
      
@@ -30,7 +30,7 @@ for i = 1:length(raw)
      end
      
      % needs to find 2 files. 
-     if(found<2)
+     if(found<2 || found>2)
          listOfUnfoundUsernames(unfoundIndex,:) = {username,' # files found ' ,int2str( found)};
          unfoundIndex=unfoundIndex+1;
      end

@@ -18,7 +18,7 @@ indexArray =[]; % has two columns, [sectionNumber, index]
 for count = 1:length(listOfStlFiles)
     u =  listOfStlFiles(count).username; % ge the username for this .stl file
     index = find(ismember(raw(:,3), u)); % find the index of the row with the corresponding username.
-    row = raw(index,:); % get the row based off the index.
+    row = raw(index,:) % get the row based off the index.
     
     % update the list element directly
     listOfStlFiles(count).LastName=char(row(1));

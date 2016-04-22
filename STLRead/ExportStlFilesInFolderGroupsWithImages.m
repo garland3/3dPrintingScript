@@ -6,16 +6,32 @@ localFolderCounter=settings.foldercount;
 folder = sprintf('Group%i',localFolderCounter);
 localFolderCounter = localFolderCounter+1;
 
-newFolderName = fullfile(settings.targetDir,folder);
+newFolderName = fullfile(settings.outputDir,folder);
 if(settings.makeNewdirectories ==1)
     mkdir(newFolderName);
 end
 
+summer = 0;% by default, not in summer mode. 
+% Do a single string compare, and then just use the summer var afterward. 
+if(strcmp(settings.semester,'summer'))
+    summer = 1;
+end
 
-csvFileName = fullfile(settings.targetDir, '3dprint.csv');
+
+csvFileName = fullfile(settings.outputDir, '3dprint.csv');
 %fileID = fopen(csvFileName,'w');
 
-for i = 1:length(listOfSTLFiles)
+if(summer==0)
+   
+else(summer==1)
+    % Change the list of list .stl files to be only those that were
+    % requested.
+    listOfSTLFiles = GetListOfRequestedSTLFiles(settings,listOfSTLFiles);
+end
+
+ numFiles = length(listOfSTLFiles);
+
+for i = 1:numFiles
     
     % -------------------------
     % Make a new folder every "numberOfFilesPerGroup"
@@ -24,9 +40,9 @@ for i = 1:length(listOfSTLFiles)
     if(mod(i,settings.numberOfFilesPerGroup)==0)
         folder = sprintf('Group%i',localFolderCounter);
         localFolderCounter = localFolderCounter+1;
-        newFolderName = fullfile(settings.targetDir,folder);
-        fprintf(fileID,'\n');
-        if(makeNewdirectories ==1)
+        newFolderName = fullfile(settings.outputDir,folder);
+        fprintf(newFolderName,'\n');
+        if(settings.makeNewdirectories ==1)
             mkdir(newFolderName);
         end
     end

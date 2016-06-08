@@ -1,4 +1,4 @@
-function listOfSTLFiles = ListOfStlFiles(settings)
+function outputListOfStlFiles = ListOfStlFiles(settings)
 
 % ---------------------
 % Find all the student folders
@@ -38,9 +38,9 @@ for i = 3:length(subFolders)
             renamedFileName = sprintf('%s_file%i.stl',char(subFolders(i).name),fileNum);
             fileNum = fileNum+1;
             renamedFileNamePath = fullfile(pathstr,renamedFileName);
-            if(settings.doRenameFiles==1)
-                movefile(pathOriginal,renamedFileNamePath);
-            end
+            %if(settings.doRenameFiles==1)
+            %    movefile(pathOriginal,renamedFileNamePath);
+            % end
             
             % --------------------
             % Save the .stl file in a list
@@ -51,7 +51,7 @@ for i = 3:length(subFolders)
             stl.renamedPath = renamedFileNamePath;
             stl.renamedFileName = renamedFileName;
             
-            listOfSTLFiles(count) = stl;
+            outputListOfStlFiles(count) = stl;
             count = count+1;
         end
     end

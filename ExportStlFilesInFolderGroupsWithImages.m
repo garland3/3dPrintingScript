@@ -6,7 +6,7 @@ localFolderCounter=settings.foldercount;
 folder = sprintf('Group%i',localFolderCounter);
 localFolderCounter = localFolderCounter+1;
 
-newFolderName = fullfile(settings.targetDir,folder);
+newFolderName = fullfile(settings.outputDir,folder);
 if(settings.makeNewdirectories ==1)
     mkdir(newFolderName);
 end
@@ -18,13 +18,14 @@ if(strcmp(settings.semester,'summer'))
 end
 
 
-csvFileName = fullfile(settings.targetDir, '3dprint.csv');
+csvFileName = fullfile(settings.outputDir, '3dprint.csv');
 %fileID = fopen(csvFileName,'w');
 
 if(summer==0)
    
 else(summer==1)
-    % re
+    % Change the list of list .stl files to be only those that were
+    % requested.
     listOfSTLFiles = GetListOfRequestedSTLFiles(settings,listOfSTLFiles);
 end
 
@@ -39,9 +40,9 @@ for i = 1:numFiles
     if(mod(i,settings.numberOfFilesPerGroup)==0)
         folder = sprintf('Group%i',localFolderCounter);
         localFolderCounter = localFolderCounter+1;
-        newFolderName = fullfile(settings.targetDir,folder);
-        fprintf(fileID,'\n');
-        if(makeNewdirectories ==1)
+        newFolderName = fullfile(settings.outputDir,folder);
+        fprintf(newFolderName,'\n');
+        if(settings.makeNewdirectories ==1)
             mkdir(newFolderName);
         end
     end
@@ -52,7 +53,7 @@ for i = 1:numFiles
     stl  = listOfSTLFiles(i);
     newFilePath = fullfile(newFolderName,stl.renamedFileName);
     if(settings.doCopyFilesToNewLocation==1)
-        copyfile(stl.renamedPath,newFilePath);
+        copyfile( stl.originalPath,newFilePath);
     end
     % temp = [cellstr(num2str(foldercount)),   cellstr(num2str(i)),cellstr(newFolderName),cellstr( stl.renamedPath)]
     %temp = temp

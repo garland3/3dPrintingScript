@@ -34,12 +34,11 @@ createOuputFolder(settings);
 
 list_of_stl_files = ListOfStlFiles(settings); % get a list of stl files
 
-if(strcmp(settings.semester,'summer'))
-   list_of_stl_files = GetListOfRequestedSTLFiles(settings,list_of_stl_files);
+if(strcmp(settings.semester,'semester'))
+    list_of_stl_files = SortFilesBySection(settings, list_of_stl_files);
 end
 
-list_of_stl_files_sorted = SortFilesBySection(settings, list_of_stl_files);
-ExportStlFilesInFolderGroupsWithImages(settings,list_of_stl_files_sorted)
+ExportStlFilesInFolderGroupsWithImages(settings,list_of_stl_files)
 
 
 

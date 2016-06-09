@@ -11,23 +11,23 @@ if(settings.makeNewdirectories ==1)
     mkdir(newFolderName);
 end
 
-summer = 0;% by default, not in summer mode. 
+%summer = 0;% by default, not in summer mode. 
 % Do a single string compare, and then just use the summer var afterward. 
-if(strcmp(settings.semester,'summer'))
-    summer = 1;
-end
+%if(strcmp(settings.semester,'summer'))
+%    summer = 1;
+%end
 
 
 csvFileName = fullfile(settings.outputDir, '3dprint.csv');
 %fileID = fopen(csvFileName,'w');
 
-if(summer==0)
+%if(summer==0)
    
-else(summer==1)
+%else(summer==1)
     % Change the list of list .stl files to be only those that were
     % requested.
-    listOfSTLFiles = GetListOfRequestedSTLFiles(settings,listOfSTLFiles);
-end
+ 
+%end
 
  numFiles = length(listOfSTLFiles);
 
@@ -74,7 +74,5 @@ for i = 1:numFiles
     end
 end
 
-% fclose(fileID);
-% csvwrite(csvFileName, fileInfo)
 cell2csv(csvFileName,fileInfo,',')
 csvFileName

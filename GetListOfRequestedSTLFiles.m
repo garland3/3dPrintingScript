@@ -9,8 +9,6 @@ function newlistOfStlFiles = GetListOfRequestedSTLFiles(settings,listOfSTLFiles)
 
 numOrginalStlFiles =length(listOfSTLFiles);
 
-%listOfUnfoundUsernames='';
-
 index = 1;
 unfoundIndex =1;
 
@@ -38,8 +36,6 @@ for i = 1:length(raw)
 end
 
 unfoundFilesCSVName = fullfile(settings.outputDir,'unfoundFilesList.csv');
-
 cell2csv(unfoundFilesCSVName,listOfUnfoundUsernames,',')
-
 
 end

@@ -1,4 +1,4 @@
-function outputListOfStlFiles = ListOfStlFiles(settings)
+function outputListOfStlFiles = GetListOfStlFiles(settings)
 
 % ---------------------
 % Find all the student folders
@@ -35,7 +35,7 @@ for i = 3:length(subFolders)
             % Rename the file
             % username)_file#
             % -------------------------------
-            renamedFileName = sprintf('%s_file%i.stl',char(subFolders(i).name),fileNum);
+            renamedFileName = sprintf('%s-file%i.stl',char(subFolders(i).name),fileNum);
             fileNum = fileNum+1;
             renamedFileNamePath = fullfile(pathstr,renamedFileName);
             %if(settings.doRenameFiles==1)

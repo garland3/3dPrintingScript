@@ -26,6 +26,6 @@ end
 % -------------------------------------
 
 fName = sprintf('%s.png',name);
- renamedFileNamePath = fullfile(pathstr,fName);         
- nameGraph = sprintf('%s.png', renamedFileNamePath);
+ nameGraph = fullfile(pathstr,fName);         
+% nameGraph = sprintf('%s.png', renamedFileNamePath);
  print(nameGraph,'-dpng')

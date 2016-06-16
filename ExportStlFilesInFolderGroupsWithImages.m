@@ -11,24 +11,8 @@ if(settings.makeNewdirectories ==1)
     mkdir(newFolderName);
 end
 
-%summer = 0;% by default, not in summer mode. 
-% Do a single string compare, and then just use the summer var afterward. 
-%if(strcmp(settings.semester,'summer'))
-%    summer = 1;
-%end
-
 
 csvFileName = fullfile(settings.outputDir, '3dprint.csv');
-%fileID = fopen(csvFileName,'w');
-
-%if(summer==0)
-   
-%else(summer==1)
-    % Change the list of list .stl files to be only those that were
-    % requested.
- 
-%end
-
  numFiles = length(listOfSTLFiles);
 
 for i = 1:numFiles
@@ -65,11 +49,11 @@ for i = 1:numFiles
     fprintf('%i   %s cpy to %s\n',i, stl.renamedPath,newFilePath);
     
     if(settings.makeImages ==1)
-        try
+      try
             FourViews(newFilePath)
-        catch
-            warning('Some problem creating the 4 views for the current model');
-        end
+       catch
+          warning('Some problem creating the 4 views for the current model');
+       end
         close all; % reset the figure
     end
 end

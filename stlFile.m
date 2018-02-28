@@ -1,6 +1,7 @@
 classdef stlFile
     properties
         username
+        usernameAlternative
         originalPath
         renamedPath
         renamedFileName

@@ -26,7 +26,8 @@ for count = 1:length(listOfStlFiles)
         % update the list element directly
         listOfStlFiles(count).LastName=char(row(1));
         listOfStlFiles(count).FirstName=char(row(2));
-        listOfStlFiles(count).sectionNumber=int32(cell2mat(row(4)));
+        %listOfStlFiles(count).sectionNumber=int32(cell2mat(row(4)));
+        listOfStlFiles(count).sectionNumber=str2double(row{1,4});
 
         indexArray = [indexArray; listOfStlFiles(count).sectionNumber count];
     else

@@ -50,7 +50,7 @@ for i = 1:numFiles
     
     if(settings.makeImages ==1)
       try
-            FourViews(newFilePath)
+            FourViews(newFilePath,stl)
        catch
           warning('Some problem creating the 4 views for the current model');
        end

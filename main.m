@@ -17,15 +17,15 @@ clc
 % Settings
 % --------------------
 settings = Configuration; % generate a configuraation object. 
-settings.targetDir = 'F:\ENGR208\P1'; % target Folder
-settings.outputDir = 'F:\ENGR2080\_P1groups_v3'
+settings.targetDir = 'D:\Spring2018\P1'; % target Folder
+settings.outputDir = 'D:\Spring2018\P1\1groups';
 settings.numberOfFilesPerGroup = 18;
 settings.foldercount = 1; % folder numbering starts at this value. (should be 1 for most applications)
 settings.makeImages = 1; % Set to 1 to make the 4 vies of each .stl file. 
 settings.doRenameFiles = 1; % Set to 1 for normal use, set to 0 while developing code
 settings.doCopyFilesToNewLocation = 1; % Set to 1 for normal use. 0 while developing. 
 settings.makeNewdirectories = 1; % set to 1 for normal use, 0 while developing. 
-settings.csvFileWithUsernamesAndSections = 'C:\Users\garla\Box Sync\Clemson\ENGR2080_nonshare\Spring2015\Roll\allSectionUserNameSectionNumber.csv';
+settings.csvFileWithUsernamesAndSections = 'C:\Users\apg\Box Sync\ENGR 2080 - Spring 18\Lab\StudentUserNameToEmailAndFirstLastname.xlsx';
 settings.semester = 'semester';
 settings.csvFileWithRequestedFilesFromGoogleForm = 'C:\Users\garla\Downloads\ENGR 2080 Bottle Request form.csv';
 % Run the main program

@@ -16,7 +16,7 @@ for i = 1:4
      % -------------------------------
      % Add a title
      % -------------------------------
-     titleName = sprintf('%s\n%s ', stl.LastName, stl.FirstName);
+     titleName = sprintf('%s ',name);
      title(titleName);
    
 end
